@@ -81,6 +81,6 @@ resource "template_dir" "config" {
 
 resource "terraform_data" "init_user_db" {
   provisioner "local-exec" {
-    command = "mysql -uadmin -p${var.admin_pass} -h ${aws_db_instance.auth_db.address} < /home/thehuge/projects/user-db/sql_scripts/init_db.sql"
+    command = "mysql -uadmin -p${var.admin_pass} -h ${aws_db_instance.auth_db.address} < ${template_dir.config.destination_dir}/init_db.sql"
   }
 }
